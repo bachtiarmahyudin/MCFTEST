@@ -1,0 +1,86 @@
+﻿@model BPKB
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div >
+    <h1 class="text-center">Skill Test IT Web Developer (.NET) <br />Mega Central Finance - Adi Consulting</h1>
+    <hr />
+    <table class="table table-borderless">
+        <tr>
+            <td width="120px">Tanggal Test:</td>
+            <td>14 Agustus 2024</td>
+        </tr>
+        <tr>
+            <td>Nama:</td>
+            <td>Bachtiar</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>bachtiamahyudin@gmail.com</td>
+        </tr>
+    </table>
+    <hr />
+    <form method="post" asp-controller="Home" asp-action="InsertBPKB" asp-antiforgery="true">
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label for="agreement_number" class="form-label" asp-for="AgreementNumber">Agreement Number</label>
+                <input type="text" class="form-control" id="agreement_number" asp-for="AgreementNumber">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="branch_id" class="form-label" asp-for="BranchId">Branch Id</label>
+                <input type="text" class="form-control" id="branch_id" asp-for="BranchId">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label for="bpkb_no" class="form-label" asp-for="BPKBNo">Nomor BPKB</label>
+                <input type="text" class="form-control" id="bpkb_no" asp-for="BPKBNo">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="police_no" class="form-label" asp-for="PoliceNo">Nomor Polisi</label>
+                <input type="text" class="form-control" id="police_no" asp-for="PoliceNo">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label for="bpkb_date_in" class="form-label" asp-for="BPKBDateIn">Tanggal BPKB In</label>
+                <input type="date" class="form-control" id="bpkb_date_in" asp-for="BPKBDateIn">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="bpkb_date" class="form-label" asp-for="BPKBDate">Tanggal BPKB</label>
+                <input type="date" class="form-control" id="bpkb_date" asp-for="BPKBDate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label for="faktur_no" class="form-label" asp-for="FakturNo">Nomor Faktur</label>
+                <input type="text" class="form-control" id="faktur_no" asp-for="FakturNo">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="faktur_date" class="form-label" asp-for="FakturDate">Tanggal Faktur</label>
+                <input type="date" class="form-control" id="faktur_date" asp-for="FakturDate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label for="location_id" class="form-label" asp-for="LocationId">Lokasi Penyimpanan</label>
+                <select class="form-control" id="location_id" asp-for="LocationId" asp-items="ViewBag.LocationList">
+                    <option>Silahkan pilih Lokasi...</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-3">
+                <button type="button" class="w-100 btn btn-danger" onclick="location.reload();">CANCEL</button>
+            </div>
+            <div class="col-6 mb-3">
+                <button type="submit" class="w-100 btn btn-primary">SAVE</button>
+            </div>
+        </div>
+    </form>
+    
+</div>
+<div class="text-center mt-3">
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
