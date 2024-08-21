@@ -96,6 +96,14 @@ namespace mcfBackEnd.Controllers
             return _myDbContext.BPKBs;
         }
 
+        [HttpGet]
+        [Route("getbpkbbyid")]
+        public async Task<ActionResult<BPKB>> GetBpkbById(string Id)
+        {
+            var _data = await _myDbContext.BPKBs.FindAsync(Id);
+            return _data;
+        }
+
         [HttpPost]
         [Route("insert_bpkb")]
         public async Task<ActionResult> InsertBPKB([FromBody] BPKBIN bpkb)
@@ -115,6 +123,40 @@ namespace mcfBackEnd.Controllers
                 UpdateBy = bpkb.CreateBy,
                 UpdateDate = DateTime.Now
             });
+            await _myDbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("edit_bpkb")]
+        public async Task<ActionResult> EditBPKB([FromBody] BPKBIN bpkb)
+        {
+            _myDbContext.BPKBs.Update(new BPKB
+            {
+                AgreementNumber = bpkb.AgreementNumber,
+                BPKBNo = bpkb.BPKBNo,
+                BranchId = bpkb.BranchId,
+                BPKBDate = Convert.ToDateTime(bpkb.BPKBDate),
+                FakturNo = bpkb.FakturNo,
+                FakturDate = Convert.ToDateTime(bpkb.FakturDate),
+                LocationId = bpkb.LocationId,
+                PoliceNo = bpkb.PoliceNo,
+                BPKBDateIn = Convert.ToDateTime(bpkb.BPKBDateIn),
+                CreatedBy = bpkb.CreateBy,
+                CreatedDate = DateTime.Now,
+                UpdateBy = bpkb.CreateBy,
+                UpdateDate = DateTime.Now
+            });
+            await _myDbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("delete_bpkb")]
+        public async Task<ActionResult> DeleteBPKB(string Id)
+        {
+            var data = await _myDbContext.BPKBs.FindAsync(Id);
+            _myDbContext.BPKBs.Remove(data);
             await _myDbContext.SaveChangesAsync();
             return Ok();
         }

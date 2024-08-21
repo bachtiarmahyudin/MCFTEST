@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.Json;
 using System.Text;
+using System.Collections.Generic;
 
 namespace mcfFrontEnd.Controllers
 {
@@ -99,6 +100,24 @@ namespace mcfFrontEnd.Controllers
             else { 
                 return RedirectToAction("Login");
             }
+        }
+        public async Task<IActionResult> bpkb()
+        {
+            var bpkbList = new List<BPKB>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseURL);
+                client.DefaultRequestHeaders.Accept.Clear();
+                HttpResponseMessage response = await client.GetAsync("GetallBPKB");
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    bpkbList = JsonConvert.DeserializeObject<List<BPKB>>(result);
+
+                }
+            }
+            return View(bpkbList.ToList());
         }
     }
 }

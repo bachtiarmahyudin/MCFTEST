@@ -10,7 +10,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var conString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=MFC_DB;Integrated Security=True;";
+var conString = Environment.GetEnvironmentVariable("CONNSTR");
+
+//var conString = builder.Configuration.GetConnectionString("DefaultConnection");
+//var conString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=MFC_DB;Integrated Security=True;";
 builder.Services.AddDbContext<MyDbContext>(option => option.UseSqlServer(conString));
 
 var app = builder.Build();

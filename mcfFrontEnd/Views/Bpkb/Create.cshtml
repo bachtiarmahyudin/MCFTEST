@@ -1,28 +1,10 @@
 ﻿@model BPKB
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "CREATE BPKB";
 }
-
-<div >
-    <h1 class="text-center">Skill Test IT Web Developer (.NET) <br />Mega Central Finance - Adi Consulting</h1>
-    <hr />
-    <table class="table table-borderless">
-        <tr>
-            <td width="120px">Tanggal Test:</td>
-            <td>14 Agustus 2024</td>
-        </tr>
-        <tr>
-            <td>Nama:</td>
-            <td>Bachtiar</td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td>bachtiamahyudin@gmail.com</td>
-        </tr>
-    </table>
-    <hr />
-    <h1>INSERT BPKB</h1>
-    <form method="post" asp-controller="Home" asp-action="InsertBPKB" asp-antiforgery="true">
+<div>
+    <h1>@ViewData["Title"]</h1>
+    <form method="post" asp-controller="Bpkb" asp-action="InsertBPKB" asp-antiforgery="true">
         <div class="row">
             <div class="col-6 mb-3">
                 <label for="agreement_number" class="form-label" asp-for="AgreementNumber">Agreement Number</label>
@@ -73,14 +55,12 @@
         </div>
         <div class="row">
             <div class="col-6 mb-3">
-                <button type="button" class="w-100 btn btn-danger" onclick="location.reload();">CANCEL</button>
+                <a class="w-100 btn btn-danger" asp-controller="Bpkb" asp-action="Index">CANCEL</a>
             </div>
             <div class="col-6 mb-3">
-                <button type="submit" class="w-100 btn btn-primary">INSERT</button>
+                <button type="submit" class="w-100 btn btn-primary">SAVE</button>
             </div>
         </div>
     </form>
 </div>
-<div class="text-center mt-3">
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
